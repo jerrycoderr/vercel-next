@@ -39,25 +39,15 @@ async function spotifyDownloader(spotifyUrl) {
         const artist = metadata.artist || "Spotify Downloader";
         const thumbnail = metadata.image || "https://i.scdn.co/image/ab67616d0000b273b14a016954baa06d8af0466e";
         const downloadUrl = metadata.download;
-        const bufferResponse = await axios.get(downloadUrl, {
-            responseType: 'arraybuffer',
-            headers: {
-                "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Mobile Safari/537.36"
-            }
-        });
 
-        if (!bufferResponse.data || bufferResponse.data.length < 1000) {
-            throw new Error("Invalid");
-        }
-
-        return {
-            success: true,
-            title,
-            artist,
-            thumbnail,
-            buffer: Buffer.from(bufferResponse.data),
-            fileName: `${title} - ${artist}.mp3`
-        };
+return {
+    success: true,
+    title,
+    artist,
+    thumbnail,
+    downloadUrl,
+    fileName: `${title} - ${artist}.mp3`
+};
 
     } catch (error) {
         return {
