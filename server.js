@@ -62,7 +62,8 @@ app.get('/api/spotify', async (req, res) => {
         metadata: {
             name: result.title,
             artist: result.artist,
-            thumbnail: result.thumbnail
+            thumbnail: result.thumbnail,
+            download: result.downloadUrl
         }
     });
 });
